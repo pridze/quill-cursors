@@ -251,7 +251,7 @@ QuillCursors.prototype._updateSelection = function(cursor, rects, containerRect)
   }
 
   // Wipe the slate clean
-  cursor.selectionEl.innerHTML = null;
+  cursor.selectionEl.innerHTML = '';
 
   var index = [];
   var rectIndex;

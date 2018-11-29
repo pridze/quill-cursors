@@ -206,6 +206,14 @@ QuillCursors.prototype._updateCursor = function(cursor) {
     return;
   }
 
+  // Set offset 0 if it image
+  if (startLeaf[0].domNode.nodeName === 'IMG') {
+    startLeaf[1] = 0;
+  }
+  if (endLeaf[0].domNode.nodeName === 'IMG') {
+    endLeaf[1] = 0;
+  }
+
   range.setStart(startLeaf[0].domNode, startLeaf[1]);
   range.setEnd(endLeaf[0].domNode, endLeaf[1]);
   rects = rangeFix.getClientRects(range);

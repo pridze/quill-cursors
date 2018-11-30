@@ -149,12 +149,23 @@ QuillCursors.prototype.setCursor = function(userId, range, name, color) {
       el: null,
       selectionEl: null,
       caretEl: null,
-      flagEl: null
+      flagEl: null,
+      timeoutId: null
     };
 
     // Build and init the remaining cursor elements
     this._buildCursor(userId, name);
   }
+
+  // display cursor
+  this.cursors[userId].flagEl.classList.add('display-flag');
+  if (this.cursors[userId].timeoutId) {
+    window.clearTimeout(this.cursors[userId].timeoutId);
+    this.cursors[userId].timeoutId = null;
+  }
+  this.cursors[userId].timeoutId = window.setTimeout(function() {
+    this.cursors[userId].flagEl.classList.remove('display-flag');
+  }.bind(this), 3000);
 
   // Move and update cursor
   window.setTimeout(function() {

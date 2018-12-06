@@ -164,6 +164,9 @@ QuillCursors.prototype.setCursor = function(userId, range, name, color) {
     this.cursors[userId].timeoutId = null;
   }
   this.cursors[userId].timeoutId = window.setTimeout(function() {
+    if (!this.cursors[userId]) {
+      return;
+    }
     this.cursors[userId].flagEl.classList.remove('display-flag');
   }.bind(this), 3000);
 
